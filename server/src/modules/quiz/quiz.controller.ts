@@ -20,9 +20,8 @@ export class QuizController {
   }
 
   @Post('/create')
-  @HttpCode(200)
   @UsePipes(ValidationPipe)
-  createQuiz(@Body() quizData: CreateQuizDto) {
-    return { data: quizData };
+  async createQuiz(@Body() quizData: CreateQuizDto) {
+    return await this.quizService.createNewQuiz(quizData);
   }
 }
