@@ -18,8 +18,8 @@ export class QuizController {
   constructor(private quizService: QuizService) {}
 
   @Get('/')
-  getAllQuiz() {
-    return this.quizService.getAllQuiz();
+  async getAllQuiz(): Promise<Quiz[]> {
+    return await this.quizService.getAllQuiz();
   }
 
   @Get('/:id')
