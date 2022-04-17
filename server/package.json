@@ -35,7 +35,7 @@
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.13.1",
-    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
