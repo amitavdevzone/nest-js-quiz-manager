@@ -9,10 +9,12 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateQuizDto } from '../dto/CreateQuiz.dto';
 import { Quiz } from '../entities/quiz.entity';
 import { QuizService } from '../services/quiz.service';
 
+@ApiTags('Quiz')
 @Controller('quiz')
 export class QuizController {
   constructor(private quizService: QuizService) {}
