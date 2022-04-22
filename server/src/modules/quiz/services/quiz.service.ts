@@ -1,5 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import {
+  IPaginationOptions,
+  paginate,
+  Pagination,
+} from 'nestjs-typeorm-paginate';
 
 import { CreateQuizDto } from '../dto/create-quiz.dto';
 import { Quiz } from '../entities/quiz.entity';
@@ -16,6 +21,13 @@ export class QuizService {
       .createQueryBuilder('q')
       .leftJoinAndSelect('q.questions', 'qt')
       .getMany();
+  }
+
+  async paginate(options: IPaginationOptions): Promise<Pagination<Quiz>> {
+    const qb = this.quizRepository.createQueryBuilder('q');
+    qb.orderBy('q.id', 'DESC');
+
+    return paginate<Quiz>(qb, options);
   }
 
   async getQuizById(id: number): Promise<Quiz> {
