@@ -5,10 +5,13 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateOptionDto } from '../dto/create-option.dto';
 import { OptionService } from '../services/option.service';
 import { QuestionService } from '../services/question.service';
 
+@ApiTags('Questions')
+@ApiBearerAuth()
 @Controller('question/option')
 export class OptionController {
   constructor(

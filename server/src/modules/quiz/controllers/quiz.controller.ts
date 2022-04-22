@@ -2,24 +2,31 @@ import {
   Body,
   Controller,
   Get,
-  HttpCode,
   Param,
   ParseIntPipe,
   Post,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
-import { CreateQuizDto } from '../dto/CreateQuiz.dto';
+import {
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiSecurity,
+  ApiTags,
+} from '@nestjs/swagger';
+
+import { CreateQuizDto } from '../dto/create-quiz.dto';
 import { Quiz } from '../entities/quiz.entity';
 import { QuizService } from '../services/quiz.service';
 
 @ApiTags('Quiz')
 @Controller('quiz')
+@ApiSecurity('bearer')
 export class QuizController {
   constructor(private quizService: QuizService) {}
 
   @Get('/')
+  @ApiOkResponse({ description: 'List of quizes', type: [Quiz] })
   async getAllQuiz(): Promise<Quiz[]> {
     return await this.quizService.getAllQuiz();
   }
@@ -29,6 +36,7 @@ export class QuizController {
     return await this.quizService.getQuizById(id);
   }
 
+  @ApiCreatedResponse({ description: 'The quiz that got created', type: Quiz })
   @Post('/create')
   @UsePipes(ValidationPipe)
   async createQuiz(@Body() quizData: CreateQuizDto) {
