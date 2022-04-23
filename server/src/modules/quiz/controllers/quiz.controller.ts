@@ -33,7 +33,7 @@ export class QuizController {
   constructor(private quizService: QuizService) {}
 
   @Get('/')
-  @ApiPaginatedResponse({ model: Quiz, description: 'List of quizes' })
+  @ApiPaginatedResponse({ model: Quiz, description: 'List of quizzes' })
   async getAllQuiz(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 1,
@@ -54,7 +54,7 @@ export class QuizController {
   @ApiCreatedResponse({ description: 'The quiz that got created', type: Quiz })
   @Post('/create')
   @UsePipes(ValidationPipe)
-  async createQuiz(@Body() quizData: CreateQuizDto) {
+  async createQuiz(@Body() quizData: CreateQuizDto): Promise<Quiz> {
     return await this.quizService.createNewQuiz(quizData);
   }
 }
