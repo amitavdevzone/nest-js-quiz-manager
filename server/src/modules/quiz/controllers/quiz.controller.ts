@@ -46,7 +46,7 @@ export class QuizController {
   }
 
   @Get('/:id')
-  @ApiOkResponse({ description: 'Get a quiz by id' })
+  @ApiOkResponse({ description: 'Get a quiz by id', type: Quiz })
   async getQuizById(@Param('id', ParseIntPipe) id: number): Promise<Quiz> {
     return await this.quizService.getQuizById(id);
   }

@@ -6,7 +6,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { CreateQuestionDto } from '../dto/create-question.dto';
 import { Question } from '../entities/question.entity';
 import { QuestionService } from '../services/question.service';
@@ -23,6 +23,10 @@ export class QuestionController {
 
   @Post('')
   @UsePipes(ValidationPipe)
+  @ApiCreatedResponse({
+    description: 'Question added to a quiz',
+    type: Question,
+  })
   async saveQuestion(@Body() question: CreateQuestionDto): Promise<Question> {
     const quiz = await this.quizService.getQuizById(question.quizId);
     return await this.questionService.createQuestion(question, quiz);

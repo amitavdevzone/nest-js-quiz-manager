@@ -10,7 +10,7 @@ import { Question } from './question.entity';
 
 @Entity('quizes')
 export class Quiz extends BaseEntity {
-  @ApiProperty({ description: 'Primary key as User ID', example: 1 })
+  @ApiProperty({ description: 'Primary key as Quiz ID', example: 1 })
   @PrimaryGeneratedColumn({
     comment: 'The quiz unique identifier',
   })
@@ -46,7 +46,6 @@ export class Quiz extends BaseEntity {
 
   @ApiProperty({
     description: 'List of questions',
-    example: [Question],
   })
   @OneToMany(() => Question, (question) => question.quiz)
   questions: Question[];
