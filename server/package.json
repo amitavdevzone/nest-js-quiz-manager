@@ -23,7 +23,9 @@
     "migration:generate": "npm run typeorm:cli -- migration:generate -d src/migrations -n",
     "migration:create": "npm run typeorm:cli -- migration:create -d src/migrations -n",
     "migration:run": "npm run typeorm:cli -- migration:run",
-    "migration:revert": "npm run typeorm:cli -- migration:revert"
+    "migration:revert": "npm run typeorm:cli -- migration:revert",
+    "seed:config": "ts-node ./node_modules/typeorm-seeding/dist/cli.js config -n src/config/typeorm.config-migrations.ts",
+    "seed:run": "ts-node ./node_modules/typeorm-seeding/dist/cli.js seed -n src/config/typeorm.config-migrations.ts"
   },
   "dependencies": {
     "@nestjs/common": "^8.4.4",
@@ -34,6 +36,7 @@
     "@nestjs/platform-express": "^8.4.4",
     "@nestjs/swagger": "^5.2.1",
     "@nestjs/typeorm": "^8.0.3",
+    "@ngneat/falso": "^5.0.0",
     "@types/bcrypt": "^5.0.0",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.5.1",
@@ -47,7 +50,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.5",
     "swagger-ui-express": "^4.3.0",
-    "typeorm": "^0.2.45"
+    "typeorm": "^0.2.45",
+    "typeorm-seeding": "^1.6.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.2.5",
