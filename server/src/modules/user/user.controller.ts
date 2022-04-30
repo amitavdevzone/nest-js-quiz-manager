@@ -1,16 +1,11 @@
-import {
-  Body,
-  Controller,
-  HttpStatus,
-  Post,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
   ApiTags,
 } from '@nestjs/swagger';
 import { SETTINGS } from 'src/app.utils';
+
 import { UserRegisterRequestDto } from './dto/user-register.req.dto';
 import { User } from './user.entity';
 import { UserService } from './user.service';
