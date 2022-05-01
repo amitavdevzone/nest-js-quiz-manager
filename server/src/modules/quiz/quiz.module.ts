@@ -9,6 +9,7 @@ import { QuizService } from './services/quiz.service';
 import { OptionRepository } from './repositories/option.repository';
 import { OptionController } from './controllers/option.controller';
 import { OptionService } from './services/option.service';
+import { UserModule } from '../user/user.module';
 
 @Module({
   controllers: [QuizController, QuestionController, OptionController],
@@ -18,6 +19,7 @@ import { OptionService } from './services/option.service';
       QuestionRepository,
       OptionRepository,
     ]),
+    UserModule,
   ],
   providers: [QuizService, QuestionService, OptionService],
 })
