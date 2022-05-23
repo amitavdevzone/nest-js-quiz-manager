@@ -21,6 +21,8 @@ import { IPaginationOptions, Pagination } from 'nestjs-typeorm-paginate';
 import { ApiPaginatedResponse } from '../../../common/decorator/api-pagination.response';
 import { AdminRoleGuard } from '../../auth/admin-role.guard';
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
+import { Roles } from '../../auth/roles.decorator';
+import { RolesGuard } from '../../auth/roles.guard';
 
 import { CreateQuizDto } from '../dto/create-quiz.dto';
 import { Quiz } from '../entities/quiz.entity';
@@ -55,7 +57,8 @@ export class QuizController {
   @ApiCreatedResponse({ description: 'The quiz that got created', type: Quiz })
   @Post('/create')
   @UsePipes(ValidationPipe)
-  @UseGuards(AdminRoleGuard)
+  @UseGuards(RolesGuard)
+  @Roles('admin')
   async createQuiz(@Body() quizData: CreateQuizDto): Promise<Quiz> {
     return await this.quizService.createNewQuiz(quizData);
   }
