@@ -14,11 +14,13 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ApiTokenCheckMiddleware } from './common/middleware/api-token-check.middleware';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { MulterModule } from '@nestjs/platform-express';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     EventEmitterModule.forRoot(),
+    MulterModule.register({ dest: './uploads' }),
     QuizModule,
     UserModule,
     AuthModule,
